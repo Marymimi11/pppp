@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cute Click Game 🐻💖</title>
+
+<style>
+body {
+    background: linear-gradient(to right, #ffe6f0, #fff0f5);
+    text-align: center;
+    font-family: Arial;
+    overflow: hidden;
+}
+
+/* العنوان */
+h1 {
+    color: #ff66b2;
+}
+
+/* النقاط */
+#score {
+    font-size: 25px;
+    color: #cc0066;
+    margin: 20px;
+}
+
+/* الشخصية */
+#character {
+    font-size: 80px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#character:hover {
+    transform: scale(1.2);
+}
+
+/* العناصر الطايرة */
+.float {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 3s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>اضغط على الشخصية 🥺🎀</h1>
+
+<div id="score">النقاط: 0 💕</div>
+
+<div id="character" onclick="clickMe()">🐰</div>
+
+<script>
+let score = 0;
+let emojis = ["💖","✨","🌸","🎀","💞"];
+
+function clickMe() {
+    score++;
+    document.getElementById("score").innerText = "النقاط: " + score + " 💕";
+
+    // تغيير الشخصية كل شوي
+    let chars = ["🐰","🐻","🐱","🐶","🐼"];
+    document.getElementById("character").innerText =
+        chars[Math.floor(Math.random() * chars.length)];
+
+    // تأثير طاير
+    let float = document.createElement("div");
+    float.className = "float";
+    float.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+    float.style.left = "50%";
+    float.style.top = "50%";
+
+    document.body.appendChild(float);
+
+    setTimeout(() => {
+        float.remove();
+    }, 3000);
+}
+</script>
+
+</body>
+</html>
